@@ -1,0 +1,66 @@
+
+
+#include "pch.h"
+include "stdafx.h"
+
+#include "iostream"
+
+#include <math.h>
+
+using namespace std;
+
+double f(double x)
+
+{
+
+	return 1 / (1 - x);
+
+}
+
+int main()
+
+{
+
+	setlocale(LC_ALL, "Russian");
+
+	double I0, I1, h, eps = 0.001, a = 2, b = 3, x;
+
+	int n = 10, j;
+
+	printf("a=%2.2f\tb=%2.2f\teps=%3.3f\nn=%2d\t\n", a, b, eps, n);
+
+	I0 = 1E+10;
+
+	I1 = 0;
+
+	while (fabs(I1 - I0) > eps)
+
+	{
+
+		I0 = I1;
+
+		h = (b - a) / n;
+
+		I1 = 0;
+
+		for (j = 0; j < n; j++)
+
+		{
+
+			x = a + (j + 0.5)*h;
+
+			I1 = I1 + f(x)*h;
+
+		}
+
+		n = 2 * n;
+
+	}
+
+	cout << "\nОтвет I=" << I1 << endl;
+
+	char st;
+
+	cin >> st;
+
+}
